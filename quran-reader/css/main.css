@@ -1,0 +1,192 @@
+/* CSS Custom Tokens */
+:root {
+    --bg-primary: #f5efe0; /* Parchment like paper */
+    --bg-secondary: #e6dfc8;
+    --text-primary: #15241b;
+    --text-secondary: #3b5042;
+    
+    --brand-main: #0d2818; /* Deep Forest Green */
+    --brand-accent: #c9a84c; /* Gold */
+    --brand-border: #b8973b;
+    
+    --header-bg: #0d2818;
+    --header-text: #f5efe0;
+
+    --btn-primary-bg: #c9a84c;
+    --btn-primary-text: #0d2818;
+
+    --shadow-sm: 0 2px 4px rgba(13, 40, 24, 0.1);
+    --shadow-md: 0 4px 8px rgba(13, 40, 24, 0.15);
+    
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    
+    --font-ui: 'Noto Kufi Arabic', system-ui, sans-serif;
+    --font-reader: 'Amiri', serif;
+}
+
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-primary), #ffffff);
+    color: var(--text-primary);
+    font-family: var(--font-ui);
+    line-height: 1.6;
+    overflow-x: hidden;
+    position: relative;
+    /* Prevent pull-to-refresh on mobile */
+    overscroll-behavior-y: none;
+    min-height: 100vh;
+}
+
+h1, h2, h3 {
+    font-weight: 700;
+}
+
+/* Header */
+.app-header {
+    background: rgba(13, 40, 24, 0.85); /* Frosty green */
+    color: var(--brand-accent);
+    padding: 1.2rem 1rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    font-family: var(--font-reader);
+    border-bottom: 2px solid rgba(201, 168, 76, 0.5); /* subtle gold line */
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.app-header h1 {
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+/* Buttons */
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.icon-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-ui);
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.1s, box-shadow 0.2s;
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+/* Utility */
+.hidden {
+    display: none !important;
+}
+
+/* Modal / Drawer */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+    backdrop-filter: blur(2px);
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.drawer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, var(--bg-primary), #fffdf8);
+    border-radius: 32px 32px 0 0;
+    padding: 1.5rem;
+    box-shadow: 0 -10px 40px rgba(0,0,0,0.25);
+    transform: translateY(0);
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+    max-height: 85vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.drawer::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50px;
+    height: 5px;
+    background-color: rgba(201, 168, 76, 0.4);
+    border-radius: 10px;
+}
+
+.modal-overlay.hidden .drawer {
+    transform: translateY(100%);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--brand-border);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    color: var(--brand-main);
+}
+
+.modal-body {
+    overflow-y: auto;
+    flex: 1;
+}
+
+/* Form Elements */
+input[type="text"] {
+    width: 100%;
+    padding: 1rem 1.2rem;
+    border: 1px solid rgba(201, 168, 76, 0.3);
+    border-radius: 20px;
+    font-family: var(--font-ui);
+    background: #fff;
+    margin-bottom: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.02);
+}
+input[type="text"]:focus {
+    outline: none;
+    border-color: var(--brand-accent);
+    box-shadow: 0 4px 15px rgba(201, 168, 76, 0.2);
+    transform: translateY(-1px);
+}

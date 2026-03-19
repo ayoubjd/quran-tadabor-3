@@ -1,0 +1,25 @@
+{
+  "name": "مكتبة النور - تدبر القرآن",
+  "short_name": "تدبر القرآن",
+  "description": "قارئ الكتب الإسلامية والقرآن الكريم",
+  "start_url": "/index.html",
+  "display": "standalone",
+  "background_color": "#0d2818",
+  "theme_color": "#0d2818",
+  "orientation": "portrait-primary",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "/icons/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icons/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

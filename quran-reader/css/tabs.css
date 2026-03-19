@@ -1,0 +1,431 @@
+/* ============================================
+   TABS NAVIGATION
+   ============================================ */
+.tabs-nav {
+    display: flex;
+    background: rgba(13, 40, 24, 0.85);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    position: sticky;
+    top: 67px; /* Header is about 67px height (1.8rem + padding 1.2rem x2, roughly) - this keeps it pinned just under the header */
+    z-index: 90;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    padding: 0.4rem 0.5rem;
+    gap: 0.3rem;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+}
+
+.tabs-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.tab-btn {
+    flex: 1;
+    min-width: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    background: transparent;
+    border: none;
+    color: rgba(245, 239, 224, 0.7);
+    padding: 0.6rem 0.4rem;
+    cursor: pointer;
+    font-family: var(--font-ui);
+    font-size: 0.75rem;
+    border-radius: 12px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    white-space: nowrap;
+}
+
+.tab-btn .tab-icon {
+    font-size: 1.4rem;
+    line-height: 1;
+    transition: transform 0.3s ease;
+}
+
+.tab-btn .tab-label {
+    font-weight: 600;
+}
+
+.tab-btn:hover {
+    color: var(--brand-accent);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.tab-btn:hover .tab-icon {
+    transform: scale(1.1);
+}
+
+.tab-btn.active {
+    color: var(--brand-main);
+    background: linear-gradient(135deg, var(--brand-accent), #e3c878);
+    box-shadow: 0 4px 12px rgba(201, 168, 76, 0.3);
+    font-weight: bold;
+}
+
+/* ============================================
+   MAIN CONTENT & PANELS
+   ============================================ */
+.main-content {
+    flex: 1;
+}
+
+.tab-panel {
+    display: none;
+    animation: fadeIn 0.25s ease;
+}
+
+.tab-panel.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   SECTION INTRO BANNERS
+   ============================================ */
+.section-intro {
+    background: linear-gradient(135deg, var(--brand-main), #143525);
+    color: var(--brand-accent);
+    text-align: center;
+    padding: 1rem 1rem;
+    font-size: 0.95rem;
+    font-family: var(--font-reader);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+
+/* ============================================
+   PDF BOOKS GRID
+   ============================================ */
+.pdf-books-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.pdf-book-card {
+    background: var(--bg-secondary);
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    box-shadow: var(--shadow-sm);
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--brand-border);
+}
+
+.pdf-book-card:hover,
+.pdf-book-card:active {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.pdf-book-cover {
+    background: var(--brand-main);
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+}
+
+.pdf-book-info {
+    padding: 0.75rem;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.pdf-book-title {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+    font-family: var(--font-reader);
+}
+
+.pdf-open-btn {
+    background: var(--brand-main);
+    color: var(--brand-accent);
+    border: none;
+    padding: 0.5rem;
+    border-radius: var(--radius-md);
+    font-family: var(--font-ui);
+    font-size: 0.8rem;
+    cursor: pointer;
+    font-weight: 700;
+    transition: background 0.2s;
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+}
+
+.pdf-open-btn:hover {
+    background: #1a4030;
+}
+
+/* ============================================
+   RANDOM TOOLS (Ayah & Hadeeth)
+   ============================================ */
+.random-tool-container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.random-tool-header {
+    text-align: center;
+}
+
+.random-tool-header h2 {
+    font-family: var(--font-reader);
+    color: var(--brand-main);
+    font-size: 1.5rem;
+    margin-bottom: 0.3rem;
+}
+
+.tool-subtitle {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Generate Button */
+.generate-btn {
+    background: linear-gradient(135deg, var(--brand-accent), #b8973b);
+    color: #fff;
+    border: none;
+    padding: 0.9rem 2.8rem;
+    border-radius: 50px;
+    font-family: var(--font-ui);
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    box-shadow: 0 6px 15px rgba(201, 168, 76, 0.3);
+}
+
+.generate-btn:hover {
+    background: linear-gradient(135deg, #dac17e, var(--brand-accent));
+    box-shadow: 0 10px 25px rgba(201, 168, 76, 0.4);
+    transform: translateY(-3px);
+}
+
+.generate-btn:active {
+    transform: translateY(1px);
+    box-shadow: 0 4px 8px rgba(201, 168, 76, 0.3);
+}
+
+.generate-btn.secondary {
+    background: linear-gradient(145deg, #f5efe0, #e6dfc8);
+    color: var(--brand-main);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.generate-btn.secondary:hover {
+    background: #fff;
+    border-color: var(--brand-accent);
+    box-shadow: 0 6px 15px rgba(201, 168, 76, 0.15);
+}
+
+.generate-btn-icon {
+    font-size: 1.3rem;
+}
+
+/* Random Card */
+.random-card {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(13, 40, 24, 0.06), 0 1px 3px rgba(13, 40, 24, 0.04);
+    overflow: hidden;
+    border: 1px solid rgba(201, 168, 76, 0.25);
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    animation: fadeIn 0.4s ease;
+    transition: transform 0.3s ease;
+}
+
+.random-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(13, 40, 24, 0.1);
+}
+
+.card-meta-top {
+    background: linear-gradient(135deg, var(--brand-main), #143525);
+    padding: 0.8rem 1.2rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+    border-bottom: 2px solid rgba(201, 168, 76, 0.5);
+}
+
+.surah-badge,
+.grade-badge,
+.takhrij-badge {
+    background: rgba(201, 168, 76, 0.2);
+    color: var(--brand-accent);
+    border: 1px solid rgba(201, 168, 76, 0.4);
+    border-radius: 20px;
+    padding: 0.2rem 0.7rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    font-family: var(--font-ui);
+}
+
+/* Ayah Box */
+.ayah-text-box {
+    background: transparent;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+    text-align: center;
+}
+
+.ayah-arabic {
+    font-family: var(--font-reader);
+    font-size: 1.6rem;
+    line-height: 2.2;
+    color: var(--brand-main);
+    direction: rtl;
+}
+
+/* Hadeeth Box */
+.hadeeth-text-box {
+    background: transparent;
+    padding: 2.5rem 1.5rem;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.15);
+}
+
+.hadeeth-arabic {
+    font-family: var(--font-reader);
+    font-size: 1.2rem;
+    line-height: 2;
+    color: var(--brand-main);
+    direction: rtl;
+    text-align: right;
+}
+
+/* Tafseer / Sharh box */
+.tafseer-box,
+.sharh-box,
+.benefits-box {
+    padding: 1.2rem;
+    border-bottom: 1px solid var(--bg-secondary);
+}
+
+.tafseer-title,
+.sharh-title,
+.benefits-title {
+    font-family: var(--font-reader);
+    color: var(--brand-accent);
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px dashed rgba(201, 168, 76, 0.3);
+}
+
+.tafseer-text,
+.sharh-text,
+.benefits-text {
+    font-size: 0.95rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+    direction: rtl;
+    text-align: right;
+    white-space: pre-line;
+}
+
+/* Card Footer */
+.card-footer {
+    padding: 0.75rem 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    background: var(--bg-secondary);
+    gap: 1rem;
+}
+
+.source-link {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.3rem 0.8rem;
+    border: 1px solid var(--text-secondary);
+    border-radius: 20px;
+    transition: background 0.2s;
+}
+
+.source-link:hover {
+    background: rgba(0, 0, 0, 0.05);
+}
+
+/* Next Button row inside card */
+.random-card .generate-btn.secondary {
+    margin: 1rem auto;
+}
+
+/* Loading & Error */
+.loading-indicator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    color: var(--text-secondary);
+}
+
+.spinner {
+    width: 40px;
+    height: 40px;
+    border: 4px solid var(--bg-secondary);
+    border-top-color: var(--brand-accent);
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.error-msg {
+    background: #fff3f3;
+    border: 1px solid #ffcccc;
+    color: #c00;
+    border-radius: var(--radius-md);
+    padding: 1rem;
+    text-align: center;
+    width: 100%;
+}

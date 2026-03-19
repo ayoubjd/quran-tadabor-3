@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>تدبر القرآن - مكتبة إسلامية</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0d2818">
+    <meta name="description"
+        content="تطبيق إسلامي شامل: القرآن الكريم، كتب إسلامية متنوعة، آية عشوائية مع تفسيرها، وحديث عشوائي مع شرحه">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Noto+Kufi+Arabic:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="stylesheet" href="css/tabs.css">
+</head>
+
+<body>
+    <header class="app-header">
+        <h1>تدبر القرآن</h1>
+    </header>
+
+    <!-- Tab Navigation -->
+    <nav class="tabs-nav" role="tablist">
+        <button class="tab-btn active" data-tab="quran" role="tab" aria-selected="true" id="tab-btn-quran">
+            <span class="tab-icon">📖</span>
+            <span class="tab-label">القرآن الكريم</span>
+        </button>
+        <button class="tab-btn" data-tab="mounawaat" role="tab" aria-selected="false" id="tab-btn-mounawaat">
+            <span class="tab-icon">📚</span>
+            <span class="tab-label">منوعات</span>
+        </button>
+        <button class="tab-btn" data-tab="ayah" role="tab" aria-selected="false" id="tab-btn-ayah">
+            <span class="tab-icon">✨</span>
+            <span class="tab-label">آية عشوائية</span>
+        </button>
+        <button class="tab-btn" data-tab="hadeeth" role="tab" aria-selected="false" id="tab-btn-hadeeth">
+            <span class="tab-icon">🌙</span>
+            <span class="tab-label">حديث عشوائي</span>
+        </button>
+    </nav>
+
+    <main class="main-content">
+
+        <!-- ===== TAB 1: القرآن الكريم ===== -->
+        <section class="tab-panel active" id="panel-quran" role="tabpanel" aria-labelledby="tab-btn-quran">
+            <div id="booksGrid-quran" class="books-grid"></div>
+        </section>
+
+        <!-- ===== TAB 2: منوعات ===== -->
+        <section class="tab-panel" id="panel-mounawaat" role="tabpanel" aria-labelledby="tab-btn-mounawaat">
+            <div class="section-intro">
+                <p>مجموعة مختارة من الكتب الإسلامية النافعة</p>
+            </div>
+            <div id="booksGrid-mounawaat" class="books-grid pdf-books-grid"></div>
+        </section>
+
+        <!-- ===== TAB 3: آية عشوائية ===== -->
+        <section class="tab-panel" id="panel-ayah" role="tabpanel" aria-labelledby="tab-btn-ayah">
+            <div class="random-tool-container">
+                <div class="random-tool-header">
+                    <h2>آية عشوائية مع تفسيرها</h2>
+                    <p class="tool-subtitle">تدبّر في آيات القرآن الكريم</p>
+                </div>
+                <button class="generate-btn" id="generateAyahBtn" onclick="generateRandomAyah()">
+                    <span class="generate-btn-icon">✨</span>
+                    <span>اختر آية</span>
+                </button>
+                <div id="ayahCard" class="random-card hidden">
+                    <div class="card-meta-top">
+                        <span id="ayahSurahInfo" class="surah-badge"></span>
+                    </div>
+                    <div class="ayah-text-box">
+                        <div class="ayah-arabic" id="ayahArabic"></div>
+                    </div>
+                    <div class="tafseer-box">
+                        <h3 class="tafseer-title">التفسير الميسر</h3>
+                        <div class="tafseer-text" id="ayahTafseer"></div>
+                    </div>
+                    <button class="generate-btn secondary" onclick="generateRandomAyah()">
+                        <span class="generate-btn-icon">🔄</span>
+                        <span>آية أخرى</span>
+                    </button>
+                </div>
+                <div id="ayahLoading" class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل البيانات...</p>
+                </div>
+                <div id="ayahError" class="error-msg hidden"></div>
+            </div>
+        </section>
+
+        <!-- ===== TAB 4: حديث عشوائي ===== -->
+        <section class="tab-panel" id="panel-hadeeth" role="tabpanel" aria-labelledby="tab-btn-hadeeth">
+            <div class="random-tool-container">
+                <div class="random-tool-header">
+                    <h2>حديث عشوائي مع شرحه</h2>
+                    <p class="tool-subtitle">من صحيح الأحاديث النبوية الشريفة</p>
+                </div>
+                <button class="generate-btn" id="generateHadeethBtn" onclick="generateRandomHadeeth()">
+                    <span class="generate-btn-icon">🌙</span>
+                    <span>اختر حديثاً</span>
+                </button>
+                <div id="hadeethCard" class="random-card hidden">
+                    <div class="card-meta-top">
+                        <span id="hadeethGrade" class="grade-badge"></span>
+                        <span id="hadeethTakhrij" class="takhrij-badge"></span>
+                    </div>
+                    <div class="hadeeth-text-box">
+                        <div class="hadeeth-arabic" id="hadeethArabic"></div>
+                    </div>
+                    <div class="sharh-box">
+                        <h3 class="sharh-title">الشرح</h3>
+                        <div class="sharh-text" id="hadeethSharh"></div>
+                    </div>
+                    <div id="hadeethBenefits" class="benefits-box hidden">
+                        <h3 class="benefits-title">الفوائد</h3>
+                        <div class="benefits-text" id="hadeethBenefitsText"></div>
+                    </div>
+                    <div class="card-footer">
+                        <a id="hadeethLink" href="#" target="_blank" class="source-link">المصدر</a>
+                    </div>
+                    <button class="generate-btn secondary" onclick="generateRandomHadeeth()">
+                        <span class="generate-btn-icon">🔄</span>
+                        <span>حديث آخر</span>
+                    </button>
+                </div>
+                <div id="hadeethLoading" class="loading-indicator hidden">
+                    <div class="spinner"></div>
+                    <p>جاري تحميل البيانات...</p>
+                </div>
+                <div id="hadeethError" class="error-msg hidden"></div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="js/books.js"></script>
+    <script src="js/db.js"></script>
+    <script src="js/downloader.js"></script>
+    <script src="js/library.js"></script>
+    <script src="js/tabs.js"></script>
+    <script src="js/random-tools.js"></script>
+
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/src/service-worker.js');
+            });
+        }
+    </script>
+</body>
+
+</html>
