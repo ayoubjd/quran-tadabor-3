@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/quran-reader/$1"
+    }
+  ],
+  "cleanUrls": true
+}
